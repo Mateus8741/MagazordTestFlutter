@@ -41,7 +41,7 @@ class _TodoHomeScreenState extends State<TodoHomeScreen> {
           children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: TodoInputField(
+              child: GlobalInputField(
                 onAddTodo: (String newTodo) {
                   _handleAddTodo(newTodo);
                 },
