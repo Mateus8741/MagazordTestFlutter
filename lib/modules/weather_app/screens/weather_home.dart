@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:magazordtestf/modules/shared/widgets/text_field.dart';
 import 'package:magazordtestf/modules/weather_app/widgets/footer_info.dart';
 import 'package:magazordtestf/modules/weather_app/widgets/locale.dart';
 
@@ -17,31 +18,41 @@ class WeatherHome extends StatelessWidget {
           colorLogo: Colors.orange,
         ),
       ),
-      body: const Stack(
+      body: Stack(
         children: [
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                  child: GlobalInputField(
+                    buttonColor: Colors.orange,
+                    onAddItem: (String value) {
+                      print(value);
+                    },
+                  ),
+                ),
+                const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     LocaleWeather(name: 'São Paulo', region: 'SP'),
                   ],
                 ),
-                SizedBox(height: 40),
-                Column(
+                const SizedBox(height: 40),
+                const Column(
                   children: [
                     WeatherInfo(
                         celcius: '20',
                         weatherType: 'Snowy',
                         imageUrl:
-                            'https://cdn.pixabay.com/photo/2016/11/29/13/07/beach-1867271_960_720.jpg'),
+                            '//cdn.weatherapi.com/weather/64x64/night/116.png'),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 100),
+                const Padding(
+                  padding: EdgeInsets.only(top: 50, bottom: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

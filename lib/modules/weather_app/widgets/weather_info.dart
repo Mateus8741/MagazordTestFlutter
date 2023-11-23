@@ -16,17 +16,16 @@ class WeatherInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.network(
-          imageUrl, // URL da imagem da API
-          height: 100,
-          width: 100,
-          errorBuilder: (context, error, stackTrace) {
-            return const Icon(
-              Icons.error, // Ícone de erro caso a imagem não carregue
-              size: 100,
-              color: Colors.red,
-            );
-          },
+        SizedBox(
+          height: 200,
+          width: 200,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              'https:$imageUrl',
+              fit: BoxFit.contain,
+            ),
+          ),
         ),
         const SizedBox(height: 10),
         Text(
