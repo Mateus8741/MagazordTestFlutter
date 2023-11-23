@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:magazordtestf/modules/shared/widgets/logo.dart';
-import 'package:magazordtestf/modules/todo_app/widgets/text_field.dart';
+import 'package:magazordtestf/modules/shared/widgets/text_field.dart';
 
 import '../../../model/todo.dart';
 import '../widgets/todo_item.dart';
