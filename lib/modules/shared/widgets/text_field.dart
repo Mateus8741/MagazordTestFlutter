@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class GlobalInputField extends StatefulWidget {
-  final Function(String) onAddTodo;
+  final Function(String) onAddItem;
   final Color buttonColor;
 
   const GlobalInputField(
-      {Key? key, required this.onAddTodo, this.buttonColor = Colors.blue})
+      {Key? key, required this.onAddItem, this.buttonColor = Colors.blue})
       : super(key: key);
 
   @override
@@ -49,8 +49,8 @@ class _TodoInputFieldState extends State<GlobalInputField> {
           child: IconButton(
             icon: const Icon(Icons.add, color: Colors.white, size: 30),
             onPressed: () {
-              String newTodo = _textController.text;
-              widget.onAddTodo(newTodo);
+              String newItem = _textController.text;
+              widget.onAddItem(newItem);
               _textController.clear();
             },
           ),
