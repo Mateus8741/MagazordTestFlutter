@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:magazordtestf/modules/weather_app/widgets/footer_info.dart';
+import 'package:magazordtestf/modules/weather_app/widgets/locale.dart';
 
 import '../../shared/widgets/logo.dart';
 import '../widgets/weather_info.dart';
@@ -26,20 +27,7 @@ class WeatherHome extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'London, ',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      'UK',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
+                    LocaleWeather(name: 'São Paulo', region: 'SP'),
                   ],
                 ),
                 SizedBox(height: 40),
