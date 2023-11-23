@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class WeatherInfo extends StatelessWidget {
   final String celcius;
   final String weatherType;
-  final String imageUrl; // URL da imagem vinda da API
+  final String imageUrl;
 
   const WeatherInfo({
     Key? key,
