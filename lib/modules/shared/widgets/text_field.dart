@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class TodoInputField extends StatefulWidget {
+class GlobalInputField extends StatefulWidget {
   final Function(String) onAddTodo;
   final Color buttonColor;
 
-  const TodoInputField(
+  const GlobalInputField(
       {Key? key, required this.onAddTodo, this.buttonColor = Colors.blue})
       : super(key: key);
 
@@ -12,7 +12,7 @@ class TodoInputField extends StatefulWidget {
   _TodoInputFieldState createState() => _TodoInputFieldState();
 }
 
-class _TodoInputFieldState extends State<TodoInputField> {
+class _TodoInputFieldState extends State<GlobalInputField> {
   final TextEditingController _textController = TextEditingController();
 
   @override
