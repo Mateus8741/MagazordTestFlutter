@@ -33,9 +33,8 @@ Abra o emulador de sua preferencia
 
 ## 🖼️ Pictures
 
-<img src="https://github.com/Mateus8741/MagazordTest1/assets/62652109/3d523a88-0db3-4716-8c70-eb51bdead16a" alt="Imagem de exemplo" width="300" height="600">
-<img src="https://github.com/Mateus8741/MagazordTestRN/assets/62652109/b438b47d-df71-442c-9cc3-2aa7c20e3ef7" alt="Imagem de exemplo" width="300" height="600">
-<img src="https://github.com/Mateus8741/MagazordTest1/assets/62652109/e05fc971-cfac-48c7-9591-6630e6b0eeef" alt="Imagem de exemplo" width="300" height="600">
+<img src="https://github.com/Mateus8741/MagazordTestFlutter/assets/62652109/0bb41204-c7c5-4ccd-a0c7-46610ff0d02f" alt="Imagem de exemplo" width="300" height="600">
+<img src="https://github.com/Mateus8741/MagazordTestFlutter/assets/62652109/fcb85572-e4a9-4585-9910-3cdfd2906734" alt="Imagem de exemplo" width="300" height="600">
 
 ## 💻 Author
 
