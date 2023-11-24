@@ -4,9 +4,11 @@ class GlobalInputField extends StatefulWidget {
   final Function(String) onAddItem;
   final Color buttonColor;
 
-  const GlobalInputField(
-      {Key? key, required this.onAddItem, this.buttonColor = Colors.blue})
-      : super(key: key);
+  const GlobalInputField({
+    Key? key,
+    required this.onAddItem,
+    this.buttonColor = Colors.blue,
+  }) : super(key: key);
 
   @override
   _TodoInputFieldState createState() => _TodoInputFieldState();
@@ -30,7 +32,7 @@ class _TodoInputFieldState extends State<GlobalInputField> {
             textCapitalization: TextCapitalization.words,
             controller: _textController,
             decoration: const InputDecoration(
-              hintText: 'Digite sua tarefa...',
+              hintText: 'Digite aqui...',
               focusColor: Colors.blue,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
