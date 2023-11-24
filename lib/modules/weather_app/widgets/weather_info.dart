@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 class WeatherInfo extends StatelessWidget {
   final String celcius;
-  final String weatherType;
   final String imageUrl;
 
   const WeatherInfo({
     Key? key,
     required this.celcius,
-    required this.weatherType,
     required this.imageUrl,
   }) : super(key: key);
 
@@ -28,13 +26,6 @@ class WeatherInfo extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Text(
-          weatherType,
-          style: const TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w300,
-          ),
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
