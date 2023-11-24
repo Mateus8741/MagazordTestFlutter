@@ -50,8 +50,13 @@ class _WeatherHomeState extends State<WeatherHome> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: const Text('Erro'),
-                content: const Text('Não foi possível obter os dados do clima'),
+                title: const Text('Tente novamente',
+                    style: TextStyle(color: Colors.red),
+                    textAlign: TextAlign.center),
+                content: const Text(
+                  'Não foi possível obter os dados do clima',
+                  style: TextStyle(color: Colors.red),
+                ),
                 actions: [
                   TextButton(
                     onPressed: () {
