@@ -1,9 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:magazordtestf/modules/shared/widgets/logo.dart';
 
+import '../../shared/api/weather_manager.dart';
 import '../../shared/model/weather.dart';
 import '../../shared/widgets/text_field.dart';
 import '../widgets/footer_info.dart';
@@ -24,6 +22,7 @@ class WeatherHome extends StatefulWidget {
 }
 
 class _WeatherHomeState extends State<WeatherHome> {
+  final WeatherManager _weatherManager = WeatherManager();
   String textValue = '';
   String name = '';
   String region = '';
@@ -33,50 +32,8 @@ class _WeatherHomeState extends State<WeatherHome> {
   String waterDrop = '';
   String clouds = '';
 
-  Future<WeatherData?> fetchWeatherData(String value) async {
-    try {
-      const String apiKey = 'f08e87ef7605415fbf9233029232111';
-      final String apiUrl =
-          'https://api.weatherapi.com/v1/current.json?key=$apiKey&q=$value';
-
-      final response = await http.get(Uri.parse(apiUrl));
-
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> json = jsonDecode(response.body);
-        return WeatherData.fromJson(json);
-      } else {
-        // ignore: use_build_context_synchronously
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: const Text('Tente novamente',
-                    style: TextStyle(color: Colors.red),
-                    textAlign: TextAlign.center),
-                content: const Text(
-                  'Não foi possível obter os dados do clima',
-                  style: TextStyle(color: Colors.red),
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('Ok'),
-                  )
-                ],
-              );
-            });
-      }
-    } catch (error) {
-      print('Erro: $error');
-      return null;
-    }
-    return null;
-  }
-
   Future<void> fetchWeatherDataAndUpdateUI(String value) async {
-    WeatherData? weatherData = await fetchWeatherData(value);
+    WeatherData? weatherData = await _weatherManager.fetchWeatherData(value);
 
     if (weatherData != null) {
       setState(() {
@@ -89,7 +46,33 @@ class _WeatherHomeState extends State<WeatherHome> {
         waterDrop = weatherData.current.humidity.toString();
         clouds = weatherData.current.cloud.toString();
       });
-    } else {}
+    } else {
+      // ignore: use_build_context_synchronously
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text(
+              'Tente novamente',
+              style: TextStyle(color: Colors.red),
+              textAlign: TextAlign.center,
+            ),
+            content: const Text(
+              'Não foi possível obter os dados do clima',
+              style: TextStyle(color: Colors.red),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Ok'),
+              )
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -134,8 +117,7 @@ class _WeatherHomeState extends State<WeatherHome> {
                     children: [
                       WeatherInfo(
                         celcius: celcius,
-                        imageUrl:
-                            '//cdn.weatherapi.com/weather/64x64/night/116.png',
+                        imageUrl: imageUrl,
                       ),
                     ],
                   ),
