@@ -8,8 +8,7 @@ import '../model/weather.dart';
 class WeatherManager {
   Future<WeatherData?> fetchWeatherData(String value) async {
     try {
-      await dotenv.load(
-          fileName: '.env'); // Carregar variáveis de ambiente do arquivo .env
+      await dotenv.load(fileName: '.env');
       final String apiKey = dotenv.env['API_KEY']!;
       final String apiUrl = '${dotenv.env['BASE_URL']}key=$apiKey&q=$value';
 
