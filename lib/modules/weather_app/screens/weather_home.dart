@@ -4,6 +4,7 @@ import 'package:magazordtestf/modules/shared/widgets/logo.dart';
 import '../../shared/api/weather_manager.dart';
 import '../../shared/model/weather.dart';
 import '../../shared/widgets/text_field.dart';
+import '../widgets/alert_weater.dart';
 import '../widgets/footer_info.dart';
 import '../widgets/locale.dart';
 import '../widgets/weather_info.dart';
@@ -51,24 +52,9 @@ class _WeatherHomeState extends State<WeatherHome> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text(
-              'Tente novamente',
-              style: TextStyle(color: Colors.red),
-              textAlign: TextAlign.center,
-            ),
-            content: const Text(
-              'Não foi possível obter os dados do clima',
-              style: TextStyle(color: Colors.red),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Ok'),
-              )
-            ],
+          return const AlertWeather(
+            titleText: 'Erro',
+            contentText: 'Cidade não encontrada!',
           );
         },
       );
