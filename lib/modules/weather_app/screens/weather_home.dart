@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:magazordtestf/modules/shared/api/weather_state.dart';
 import 'package:magazordtestf/modules/shared/widgets/logo.dart';
+import 'package:provider/provider.dart';
 
-import '../../shared/api/weather_manager.dart';
-import '../../shared/model/weather.dart';
 import '../../shared/widgets/text_field.dart';
-import '../widgets/alert_weater.dart';
 import '../widgets/footer_info.dart';
 import '../widgets/locale.dart';
 import '../widgets/weather_info.dart';
@@ -15,51 +14,8 @@ void main() {
   ));
 }
 
-class WeatherHome extends StatefulWidget {
+class WeatherHome extends StatelessWidget {
   const WeatherHome({Key? key}) : super(key: key);
-
-  @override
-  _WeatherHomeState createState() => _WeatherHomeState();
-}
-
-class _WeatherHomeState extends State<WeatherHome> {
-  final WeatherManager _weatherManager = WeatherManager();
-  String textValue = '';
-  String name = '';
-  String region = '';
-  String imageUrl = '';
-  String celcius = '';
-  String windMph = '';
-  String waterDrop = '';
-  String clouds = '';
-
-  Future<void> fetchWeatherDataAndUpdateUI(String value) async {
-    WeatherData? weatherData = await _weatherManager.fetchWeatherData(value);
-
-    if (weatherData != null) {
-      setState(() {
-        textValue = value;
-        name = weatherData.location.name;
-        region = weatherData.location.region;
-        imageUrl = weatherData.current.condition.icon;
-        celcius = weatherData.current.tempC.toString();
-        windMph = weatherData.current.windMph.toString();
-        waterDrop = weatherData.current.humidity.toString();
-        clouds = weatherData.current.cloud.toString();
-      });
-    } else {
-      // ignore: use_build_context_synchronously
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const AlertWeather(
-            titleText: 'Erro',
-            contentText: 'Cidade não encontrada!',
-          );
-        },
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,48 +36,58 @@ class _WeatherHomeState extends State<WeatherHome> {
                   child: GlobalInputField(
                     buttonColor: Colors.orange,
                     onAddItem: (String value) {
-                      fetchWeatherDataAndUpdateUI(value);
+                      Provider.of<WeatherState>(context, listen: false)
+                          .fetchWeatherDataAndUpdateUI(value, context);
                     },
                   ),
                 ),
-                if (!name.isNotEmpty)
+                if (Provider.of<WeatherState>(context).name.isEmpty)
                   const Text(
                     'Nenhuma busca feita...',
                     style: TextStyle(fontSize: 20),
                   ),
-                if (name.isNotEmpty)
+                if (Provider.of<WeatherState>(context).name.isNotEmpty)
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      LocaleWeather(name: name, region: region),
+                      LocaleWeather(
+                          name: Provider.of<WeatherState>(context).name,
+                          region: Provider.of<WeatherState>(context).region),
                     ],
                   ),
                 const SizedBox(height: 40),
-                if (name.isNotEmpty)
+                if (Provider.of<WeatherState>(context).name.isNotEmpty)
                   Column(
                     children: [
                       WeatherInfo(
-                        celcius: celcius,
-                        imageUrl: imageUrl,
+                        imageUrl: Provider.of<WeatherState>(context).imageUrl,
+                        celcius: Provider.of<WeatherState>(context).celcius,
                       ),
                     ],
                   ),
-                if (name.isNotEmpty)
+                if (Provider.of<WeatherState>(context).name.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.only(top: 50, bottom: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FooterInfo(
-                            textVar: '$windMph km/h',
+                            textVar:
+                                '${Provider.of<WeatherState>(context).windMph} km/h',
                             iconVar: Icons.wind_power),
                         const SizedBox(width: 20),
                         FooterInfo(
-                            textVar: '$waterDrop%', iconVar: Icons.water_drop),
+                            textVar:
+                                '${Provider.of<WeatherState>(context).waterDrop}'
+                                '%',
+                            iconVar: Icons.water_drop),
                         const SizedBox(width: 20),
                         FooterInfo(
-                            textVar: '$clouds%', iconVar: Icons.wb_cloudy),
+                            textVar:
+                                '${Provider.of<WeatherState>(context).clouds}'
+                                '%',
+                            iconVar: Icons.cloud),
                       ],
                     ),
                   ),
