@@ -15,6 +15,15 @@
 ## 📋 Tasks
 1. ✅ TodoApp
 2. ✅ WeatherApp
+  
+## 🎁 Bônus (opcional)
+1. ✅ Implemente armazenamento local para salvar as tarefas concluídas.
+2. ✅ Integre o aplicativo com uma API de terceiros de sua escolha, como compartilhamento em redes sociais ou geração de QR code.
+   
+## ⏫ Improvements
+1. ✅ Variáveis de ambiente isoladas(lembrando que as enviei de forma aberta por se tratar de um teste onde as credenciais irão se perder depois de um tempo)
+2. ✅ Abstração melhorada de regras de negócio
+3. ✅ Melhor abstração de componentes
 
 ## 🚀 Install
 
